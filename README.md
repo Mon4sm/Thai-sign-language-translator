@@ -1,8 +1,8 @@
-# Thai sign language translator (ThSL)
+# Thai sign language translator (ThSLT)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](#license)
 
-## Description
-This is a Thai sign language library for python used for translating Thai sign language into plain Thai characters. This library is used with [Mediapipe](https://developers.google.com/mediapipe) and [OpenCV](https://opencv.org/), so you should install those libraries first to make ThSL function properly. Although the code works about 90% of the time, there are a lot of factors that you need to consider such as background , lighting , camera quality , hardware qualities. To increase the accuracy, you can adjust the <span style="background-color: gray; padding: 2px 4px; border-radius: 4px; color:black;">min_tracking_confidence</span> and <span style="background-color: gray; padding: 2px 4px; border-radius: 4px; color:black;">min_detection_confidence</span> from the default values.
+## Description 
+This is a Thai sign language library for python used for translating Thai sign language into plain Thai characters. This library is used with [Mediapipe](https://developers.google.com/mediapipe) and [OpenCV](https://opencv.org/), so you should install those libraries first to make ThSLT function properly. Although the code works about 90% of the time, there are a lot of factors that you need to consider such as background , lighting , camera quality , hardware qualities. To increase the accuracy, you can adjust the <span style="background-color: gray; padding: 2px 4px; border-radius: 4px; color:black;">min_tracking_confidence</span> and <span style="background-color: gray; padding: 2px 4px; border-radius: 4px; color:black;">min_detection_confidence</span> from the default values.
 
 
 ## Table of Contents
@@ -11,7 +11,6 @@ This is a Thai sign language library for python used for translating Thai sign l
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Features](#features)
-- [Documentation](#documentation)
 - [License](#license)
 - [Support](#support)
 - [Acknowledgments](#acknowledgments)
@@ -26,15 +25,15 @@ pip install opencv-python
 ```
 pip install mediapipe
 ```
-### Use the following method to install ThSL
- - To install ThSL, use the following command
+### Use the following method to install ThSLT
+ - To install ThSLT, use the following command
 ```
-pip install thsl
+pip install thslt
 ```
 ## Usage
-### Here's an example setup for ThSL:
+### Here's an example setup for ThSLT:
 ```
-import thsl , cv2 
+import thslt , cv2 
 import mediapipe as mp
 
 mpdraw = mp.solutions.drawing_utils
@@ -53,7 +52,7 @@ while True:
     ret, frame = capture.read()
     bgrtorgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     results = hands.process(bgrtorgb)
-    thsl.translate(frame,results,text_encode)
+    thslt.translate(frame,results,text_encode)
     if results.multi_hand_landmarks:
         for hand_landmarks in results.multi_hand_landmarks:
             for id, lm in enumerate(hand_landmarks.landmark):
@@ -71,10 +70,10 @@ while True:
         break
 cv2.destroyAllWindows()
 
-translation = thsl.decode(text_encode)
+translation = thslt.decode(text_encode)
 print(translation)
 ```
- ThSL has a built in Mediapipe hand mapping. So mapping the hand landmarks is not necessary. It only helps you notice that the camera is actually mapping your hand.
+ ThSLT has a built in Mediapipe hand mapping. So mapping the hand landmarks is not necessary. It only helps you notice that the camera is actually mapping your hand.
 
 ## Configuration
 ### Text_encode
@@ -88,8 +87,9 @@ text_encode = []
 ### Translate
   - use this function after you create a loop for OpenCV
 ```
-translate(frame,handlabel,results,text_encode)
+translate(frame,results,text_encode)
 ```
+#### Parameters
 - frame = capture.read()
 - results = Hands.process(bgrtorgb)
 - text_encode = [ ]
@@ -98,10 +98,6 @@ translate(frame,handlabel,results,text_encode)
 ```
 translation = encode(text_encode)
 ```
-## Documentation
-
-The document is not finished yet.
-
 ## License
 
 Copyright 2023 Papangkon Ninarundech
@@ -112,12 +108,9 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-## Support
-
-Contact +66 097-153-3812 for more information
-
 ## Acknowledgments
 
 Thank you to the individuals who assisted in creating this project.
  - Mr.Jiraroj Wiruchpongsanon
+
 
