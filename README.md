@@ -12,7 +12,6 @@ This is a Thai sign language library for python used for translating Thai sign l
 - [Configuration](#configuration)
 - [Features](#features)
 - [License](#license)
-- [Support](#support)
 - [Acknowledgments](#acknowledgments)
 
 ## Installation
